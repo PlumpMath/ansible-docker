@@ -1,0 +1,12 @@
+- name: Enable ppa adding via apt-add-repository is available
+  tags: ppa
+  apt: pkg={{ item }} state=latest update_cache=yes
+  with_items: docker_deps # defined in groupvars/hosting.yml
+
+- name: Add docker ppa
+  tags: ppa
+  apt_repository: repo=ppa:dotcloud/lxc-docker
+
+- name: Install docker via ppa
+  tags: ppa
+  apt: pkg=lxc-docker state=latest update_cache=yes

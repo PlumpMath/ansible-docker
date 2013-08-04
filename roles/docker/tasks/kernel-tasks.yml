@@ -1,0 +1,3 @@
+- name: Install linux-image-{{ linux_kernel }} # defined in group_vars/hosting.yml
+  tags: dep,ppa,bin
+  apt: package=linux-image-extra-{{ linux_kernel }} update_cache=yes

@@ -1,0 +1,3 @@
+---
+- include: kernel-tasks.yml
+- include: docker-tasks.yml

@@ -1,0 +1,4 @@
+docker_deps:
+  - software-properties-common
+
+linux_kernel: 3.8.0-19-generic
