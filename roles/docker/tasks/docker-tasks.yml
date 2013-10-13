@@ -1,12 +1,15 @@
-- name: Enable ppa adding via apt-add-repository is available
-  tags: ppa
-  apt: pkg={{ item }} state=latest update_cache=yes
-  with_items: docker_deps # defined in groupvars/hosting.yml
+- name: Add docker repository key
+  shell: curl https://get.docker.io/gpg | apt-key add -
+  sudo: yes
 
-- name: Add docker ppa
-  tags: ppa
-  apt_repository: repo=ppa:dotcloud/lxc-docker
+- name: Add docker repository
+  shell: echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
+  sudo: yes
 
-- name: Install docker via ppa
-  tags: ppa
-  apt: pkg=lxc-docker state=latest update_cache=yes
+- name: Update apt
+  apt: update_cache=yes
+  sudo: yes
+
+- name: Install docker
+  apt: pkg=lxc-docker state=installed
+  sudo: yes
